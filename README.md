@@ -13,8 +13,12 @@ El metodo Insert solicita dos parametros: el objeto a ser insertado y un boolean
     Nombre = "Bebida",
     Stock = 100,
     Precio = 650
-  }
+  };
+	
   OracleConnection con = new OracleConnection(strConexion); //Creamos la conexion.
+	
   CommandManager cmd = new CommandManager(con);             //Creamos la instancia de CommandManager.
+	
   return cmd.Insert<Producto>(p);                           //Insertamos el objeto en la base de datos.
+	
 #####
