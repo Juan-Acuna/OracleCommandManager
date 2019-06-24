@@ -19,8 +19,68 @@ public bool InsertarProducto(){
 	};
   	OracleConnection con = new OracleConnection(strConexion); //Creamos la conexion.
   	CommandManager cmd = new CommandManager(con);             //Creamos la instancia de CommandManager.
-  	return cmd.Insert<Producto>(p);                           //Insertamos el objeto en la base de datos.
+  	return cmd.Insert(p);                                     //Insertamos el objeto en la base de datos.
+	//Tambien se puede usar de la siguiente manera:
+	return cmd.Insert<Producto>(p);
 }
 ```
-	
-#####
+
+### Get
+El metodo **Get** solicita un parametro "id" de tipo _dynamic_(puede ser int o String) y devuelve un objeto del tipo especificado segun la id proporcionada.
+#### Ejemplo:
+
+```C#
+public Producto ObtenerProducto(){
+	int id = 1;
+  	OracleConnection con = new OracleConnection(strConexion); //Creamos la conexion.
+  	CommandManager cmd = new CommandManager(con);             //Creamos la instancia de CommandManager.
+  	return cmd.Get<Producto>(id);                             //Buscamos el objeto en la base de datos.
+}
+```
+
+### GetAll
+El metodo **GetAll** no solicita parametros y devuelve una lista de objetos del tipo especificado(List&lt;T&gt;).
+#### Ejemplo:
+
+```C#
+public List<Producto> ObtenerrProductos(){
+  	OracleConnection con = new OracleConnection(strConexion); //Creamos la conexion.
+  	CommandManager cmd = new CommandManager(con);             //Creamos la instancia de CommandManager.
+  	return cmd.GetAll<Producto>();                            //Obtenemos los objetos de la base de datos y los pasamos como lista.
+}
+```
+
+### Update
+El metodo **Update** solicita un parametro: un objeto del tipo especificado con los valores a actualizar y el identificador. Devuelve un bool indicando si fue posible realizar la acción.
+#### Ejemplo:
+
+```C#
+public List<Producto> ObtenerrProductos(){
+	Producto p = new Producto
+	{       Id = 2,
+  		Stock = 100
+	};
+  	OracleConnection con = new OracleConnection(strConexion); //Creamos la conexion.
+  	CommandManager cmd = new CommandManager(con);             //Creamos la instancia de CommandManager.
+  	return cmd.Update(p);                                     //Actualizamos el objeto en la base de datos.
+	//Tambien se puede usar de la siguiente manera:
+	return cmd.Update<Producto>(p);
+}
+```
+
+### Delete
+El metodo **Delete** solicita un parametro: un objeto del tipo especificado con el identificador. Devuelve un bool indicando si fue posible realizar la acción.
+#### Ejemplo:
+
+```C#
+public List<Producto> EliminarProducto(){
+	Producto p = new Producto();
+	p.Id = 2;
+  	OracleConnection con = new OracleConnection(strConexion); //Creamos la conexion.
+  	CommandManager cmd = new CommandManager(con);             //Creamos la instancia de CommandManager.
+  	return cmd.Delete(p);                                     //Eliminamos el objeto de la base de datos.
+	//Tambien se puede usar de la siguiente manera:
+	return cmd.Delete<Producto>(p);
+}
+```
+
