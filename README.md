@@ -43,7 +43,7 @@ El metodo **GetAll** no solicita parametros y devuelve una lista de objetos del 
 #### Ejemplo:
 
 ```C#
-public List<Producto> ObtenerrProductos(){
+public List<Producto> ObtenerProductos(){
   	OracleConnection con = new OracleConnection(strConexion); //Creamos la conexion.
   	CommandManager cmd = new CommandManager(con);             //Creamos la instancia de CommandManager.
   	return cmd.GetAll<Producto>();                            //Obtenemos los objetos de la base de datos y los pasamos como lista.
@@ -55,7 +55,7 @@ El metodo **Update** solicita un parametro: un objeto del tipo especificado con 
 #### Ejemplo:
 
 ```C#
-public List<Producto> ObtenerrProductos(){
+public bool ActualizarProducto(){
 	Producto p = new Producto
 	{       Id = 2,
   		Stock = 100
@@ -73,7 +73,7 @@ El metodo **Delete** solicita un parametro: un objeto del tipo especificado con 
 #### Ejemplo:
 
 ```C#
-public List<Producto> EliminarProducto(){
+public bool EliminarProducto(){
 	Producto p = new Producto();
 	p.Id = 2;
   	OracleConnection con = new OracleConnection(strConexion); //Creamos la conexion.
